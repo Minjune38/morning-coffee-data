@@ -1,0 +1,83 @@
+﻿
+
+
+
+
+
+
+
+
+<form id="searchForm1" name="searchForm1">
+<input type="hidden"	id="forward"			name="forward"			value="" />
+<input type="hidden"	id="method"				name="method"			value="" />
+<input type="hidden"	id="repIsuSrtCd"		name="repIsuSrtCd"		value="" />
+<input type="hidden"	id="isurCd"				name="isurCd"			value="" />
+<input type="hidden"	id="fdName"				name="fdName"			value="" />
+<input type="hidden"	id="kwd"				name="kwd"				value="대량매매내역" />
+<input type="hidden"	id="pageIndex"			name="pageIndex"		value="1" />
+<input type="hidden"	id="currentPageSize"	name="currentPageSize"	value="30" />
+<input type="hidden"	id="fromData"			name="fromData"			value="20261116" />
+<input type="hidden"	id="toData"				name="toData"			value="20261123" />
+<input type="hidden"	id="repIsuCd"			name="repIsuCd"			value="" />
+</form>
+
+
+<script language="javascript" type="text/javascript">
+function fnSubSearchComChart() {
+    $("#searchForm1 > #method").val("searchTotalInfoComChart");
+    $("#searchForm1").ajaxSubmit({
+          ajaxUrl : '/disclosure/searchtotalinfo.do'
+        , ajaxCallBack: fnCallBackSearchComChart
+    });
+}
+
+function fnCallBackSearchComChart(data){
+	$("#sub-contents-result1").empty().append(data);
+}
+
+function fnSubSearchComInfo() {
+    $("#searchForm1 > #method").val("searchTotalInfoComInfo");
+    $("#searchForm1").ajaxSubmit({
+          ajaxUrl : '/disclosure/searchtotalinfo.do'
+        , ajaxCallBack: fnCallBackSearchComInfo
+    });
+}
+
+function fnCallBackSearchComInfo(data){
+	$("#sub-contents-result2").empty().append(data);
+}
+
+function fnAllSearch() {
+	fnSubSearchComChart();
+	fnSubSearchComInfo();
+}
+
+$(document).ready(function(){
+
+});
+</script>
+
+
+
+
+<script language="javascript" type="text/javascript">
+function fnSubSearchDiscls() {
+    $("#searchForm1 > #forward").val("searchtotalinfo_com_discls");
+    $("#searchForm1 > #method").val("searchTotalInfoSub");
+    $("#searchForm1").ajaxSubmit({
+          ajaxUrl : '/disclosure/searchtotalinfo.do'
+        , ajaxCallBack: fnCallBackSearchDiscls
+    });
+}
+
+function fnCallBackSearchDiscls(data){
+	$("#sub-contents-result-discls").empty().append(data);
+}
+
+$(document).ready(function(){
+	fnSubSearchDiscls();
+});
+</script>
+
+<div id="sub-contents-result-discls">
+</div>
